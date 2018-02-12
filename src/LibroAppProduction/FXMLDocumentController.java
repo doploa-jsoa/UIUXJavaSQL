@@ -75,7 +75,7 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       //primaryStage.setTitle("java-buddy.blogspot.com");
+       //primaryStage.setTitle("");
      
       //Group root = new Group();
  
