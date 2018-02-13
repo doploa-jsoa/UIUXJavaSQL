@@ -7,21 +7,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="647.0" prefWidth="1162.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="LibroAppProduction.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="647.0" prefWidth="1162.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LibroAppProduction.FXMLDocumentController">
    <children>
-      <TableView fx:id="tableView" layoutX="113.0" layoutY="159.0" prefHeight="408.0" prefWidth="340.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
-      </TableView>
+      <TableView fx:id="tableView" layoutX="113.0" layoutY="159.0" prefHeight="408.0" prefWidth="340.0" />
       <Button layoutX="502.0" layoutY="45.0" mnemonicParsing="false" prefHeight="148.0" prefWidth="154.0" text="Borrow" />
       <Button layoutX="113.0" layoutY="591.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="118.0" text="Add Item" />
       <MenuButton layoutX="14.0" layoutY="6.0" mnemonicParsing="false">
         <items>
           <MenuItem mnemonicParsing="false" text="Action 1" />
           <MenuItem mnemonicParsing="false" text="Action 2" />
+          <MenuItem mnemonicParsing="false" text="Action 3" />
         </items>
       </MenuButton>
       <Label layoutX="667.0" layoutY="79.0" text="Student Name:" />
