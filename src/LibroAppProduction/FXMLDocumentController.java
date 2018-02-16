@@ -10,6 +10,8 @@ import java.util.ResourceBundle;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,8 +20,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 
 /**
  *
@@ -45,6 +51,7 @@ public class FXMLDocumentController implements Initializable {
           this.fieldValue5 = new SimpleStringProperty(fValue5);
       }
       
+  
       public String getFieldMonth() {
           return fieldMonth.get();
       }
@@ -69,6 +76,7 @@ public class FXMLDocumentController implements Initializable {
           return fieldValue5.get();
       }
      
+      
      
   }
      
@@ -87,7 +95,9 @@ public class FXMLDocumentController implements Initializable {
               new Record("November", "Author1", 50,225, 60, "Publisher1"),
               new Record("December", "Author1", 50,99, 50, "Publisher1"));
      
-     
+    
+    
+    
     @FXML
     private Label label;
     
@@ -98,13 +108,60 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
+    private void clickButtonAction(ActionEvent event) {
+       Record pos = tableView.getSelectionModel().getSelectedItem();
+       System.out.println(pos.fieldMonth+" "+pos.fieldValue);
+    };
+    
+   
+    
+    @FXML
     private TableView<Record> tableView = new TableView<>();
     
+  @FXML
+    private TextArea titleHandle;
+    
+  @FXML
+    private TextArea authorHandle ;
+    
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
    
-     
+       Record pos = tableView.getSelectionModel().getSelectedItem();
+       System.out.println(pos);
+       //int row = pos.getRow();
+       //int col = pos.getColumn();
+       
+       //System.out.println("row"+row);
       //Group root = new Group();
+      
+      tableView.getSelectionModel().selectedItemProperty().addListener(new SelectionListener()
+       {
+      @Override
+        public void changed(ObservableValue<? extends Record> observable,
+                Record oldDoc, Record newDoc) {
+            System.out.println("Changing selected row ");
+            
+            
+            Record pos2 = tableView.getSelectionModel().getSelectedItem();
+       System.out.println(pos2);
+       
+            //titleHandle.setText();
+            if (oldDoc != null) {
+                //System.out.println("hello");
+                //System.out.println("hellpo"+pos2.getFieldMonth());
+                titleHandle.setText(pos2.getFieldMonth());
+                authorHandle.setText(pos2.getFieldValue());
+            }
+            if (newDoc != null) {
+                System.out.println("Change has come");
+            }
+        }     
+       } 
+      );
+      
+      
       
       TableColumn columnMonth = new TableColumn("Title");
         columnMonth.setCellValueFactory(
@@ -144,3 +201,4 @@ public class FXMLDocumentController implements Initializable {
     }    
     
 }
+

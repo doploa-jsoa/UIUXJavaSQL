@@ -5,6 +5,8 @@
  */
 package LibroAppProduction;
 
+//import java.awt.Image;
+import javafx.scene.image.Image;
 import javafx.application.Application;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -18,15 +20,23 @@ import javafx.stage.Stage;
  */
 public class LibroAppProduction extends Application {
     
+    final static String version_number = "0.01a";
 
-    
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        //initStyles();
+        stage.setMinHeight(580);
+        stage.setMinWidth(800);
         
-        Scene scene = new Scene(root);
+        final Scene scene = new Scene(root);
         
+        // Set application icon
+       // stage.getIcons().add(new Image(""));
+        
+        // Set application name
         stage.setScene(scene);
+        stage.setTitle("HILLTOP SCHOOL BOOK BORROWING SERVICE ("+version_number+")");
         stage.show();
     }
 
