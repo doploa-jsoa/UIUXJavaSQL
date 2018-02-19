@@ -26,7 +26,7 @@ public class LibroAppProduction extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         //initStyles();
-        stage.setMinHeight(580);
+        stage.setMinHeight(680);
         stage.setMinWidth(800);
         
         final Scene scene = new Scene(root);
@@ -36,7 +36,7 @@ public class LibroAppProduction extends Application {
         
         // Set application name
         stage.setScene(scene);
-        stage.setTitle("HILLTOP SCHOOL BOOK BORROWING SERVICE ("+version_number+")");
+        stage.setTitle("LibManager ("+version_number+")");
         stage.show();
     }
 
