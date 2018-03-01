@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="256.0" prefWidth="533.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LibroAppProduction.FXMLPopUpWindowController">
+   <children>
+      <Button layoutX="51.0" layoutY="176.0" mnemonicParsing="false" onAction="#clickButtonDeleteBook" prefHeight="48.0" prefWidth="116.0" text="Yes" />
+      <Button layoutX="368.0" layoutY="176.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="116.0" text="No" />
+      <Label layoutX="118.0" layoutY="93.0" text="Delete this book from the transaction" />
+   </children>
+</AnchorPane>

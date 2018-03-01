@@ -5,8 +5,11 @@
  */
 package LibroAppProduction;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -15,9 +18,13 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
@@ -27,6 +34,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  *
@@ -36,18 +45,20 @@ public class FXMLDocumentController implements Initializable {
     
      public class Record{
       private final SimpleStringProperty fieldTitle;
+      private final SimpleStringProperty fieldSubTitle;
       private final SimpleStringProperty fieldAuthor;
       private final SimpleIntegerProperty fieldValuePages;
       private final SimpleIntegerProperty fieldValueISBN;
       private final SimpleIntegerProperty fieldValueYear;
       private final SimpleStringProperty fieldValuePu;
-       private final SimpleStringProperty fieldValueURL;
-        private final SimpleStringProperty fieldValueSummary;
-         private final SimpleStringProperty fieldLanguage;
+      private final SimpleStringProperty fieldValueURL;
+      private final SimpleStringProperty fieldValueSummary;
+      private final SimpleStringProperty fieldLanguage;
      
-      Record(String fMonth, String fValue, int fValue2, int fValue3, int fValue4, 
+      Record(String fMonth,  String fValue, String fSubTitle, int fValue2, int fValue3, int fValue4, 
               String fValue5,  String fValue6,  String fValue7, String fValue8){
           this.fieldTitle = new SimpleStringProperty(fMonth);
+          this.fieldSubTitle = new SimpleStringProperty(fSubTitle);
           //this.fieldNewDay = new SimpleDoubleProperty(fValue);
           this.fieldAuthor = new SimpleStringProperty(fValue);
           this.fieldValuePages = new SimpleIntegerProperty(fValue2);
@@ -63,11 +74,15 @@ public class FXMLDocumentController implements Initializable {
       public String getFieldTitle() {
           return fieldTitle.get();
       }
-     
+      
       public String getFieldAuthor() {
           return fieldAuthor.get();
       }
       
+      public String getFieldSubTitle() {
+          return fieldSubTitle.get();
+      }
+     
       public int getFieldValuePages() {
           return fieldValuePages.get();
       }
@@ -102,18 +117,22 @@ public class FXMLDocumentController implements Initializable {
      
      private ObservableList<Record> dataList =
           FXCollections.observableArrayList(          
-              new Record("A Wrinkle In Time", "Author1", 50, 100, 50, "Publisher1", "a", "b", "en"),
-              new Record("February", "Author1", 50,200 , 50, "Publisher2","a", "b", "en"),
-              new Record("March", "Author1", 50,50, 50, "Publisher3","a", "b", "en"),
-              new Record("April","Author1", 50, 75, 50, "Publisher4","a", "b", "en"),
-              new Record("May", "Author1", 50,110, 50, "Publisher5","a", "b", "en"),
-              new Record("June", "Author1", 50,300, 50, "Publisher6","a", "b", "en"),
-              new Record("July", "Author1", 50,111, 30, "Publisher7","a", "b", "en"),
-              new Record("August", "Author1", 50, 30, 250, "Publisher8","a", "b", "en"),
-              new Record("September", "Author1", 50, 75, 90, "Publisher9","a", "b", "en"),
-              new Record("October", "Author1", 50,55, 70, "Publisher10","a", "b", "en"),
-              new Record("November", "Author1", 50,225, 60, "Publisher11","a", "b", "en"),
-              new Record("December", "Author1", 50,99, 50, "Publisher12","a", "b", "en"));
+              new Record("A Wrinkle In Time", "Madeleine L'Engle", "", 240, 74308039, 2017, "Farrar, Straus and Giroux", "a", "b", "en"),
+              new Record("The Magicians Nephew",  "C. S. Lewis", "", 202, 439861349 , 1955, "HarperCollins","a", "b", "en"),
+         //     new Record("The Vegetarian", "Han Kang", "A Novel", 192, 553448188, 2016, "Hogarth","a", "b", "en"),
+         //     new Record("Homegoing","Yaa Gyasi", "", 320, 1101971061, 2016, "Knopf","a", "b", "en"),
+         //     new Record("Ghana Must Go", "Taiye Selasi", "", 348, 110, 2013, "Penguin","a", "b", "en"),
+         //     new Record("Half of a Yellow Sun", "Chimanda Ngozi Adichie", "",562, 300, 2008, "Anchor","a", "b", "en"),
+         //     new Record("Expository Apologetics", "Voddie Baucham Jr", "Answering objections with the power of the word", 208, 111, 2015, "Crossway","a", "b", "en"),
+         //     new Record("The Sellout", "Paul Beatty", "", 305, 30, 2015, "Farrar, Straus and Giroux","a", "b", "en"),
+        //      new Record("Life Debt ", "Chuck Wendig", "", 514, 1101966955, 2015, "Del Rey  ","a", "b", "en"),
+         //     new Record("The Road Less Traveled",  "M. Scott Peck", " A New Psychology of Love, Traditional Values and Spiritual Growth", 322, 0743243153, 2003, "Touchstone","a", "b", "en"),
+         //     new Record("Analog and Mixed-Signal Electronics", "Karl Stephan", "", 536, 1118782666, 2015, "Wiley","a", "b", "en"),
+         //     new Record("The Little Prince",  "Antoine de Saint-Exupéry", "", 90, 1592324762, 2015, "Seaburn World Classics","a", "b", "en"),
+        //      new Record("The Message", "Eugene H. Paterson", "The Bible in Contemporary Language", 928, 1600065945, 2016, "Navpress Publishing Group","a", "b", "en"),
+        //      new Record("The Scientist and Engineers Guide to Digital Signal Processing", "Steven W. Smith", "", 626, 966017633, 1997, "California Technical Publishing","a", "b", "en"),
+              new Record("We Should All Be Feminists", "Chimanda Ngozi Adichie",  "", 64, 1101911761, 2015, "Vintage","a", "b", "en"));
+     
      
     
     
@@ -128,11 +147,22 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
+    private void clickTableSelectionAction(ActionEvent event) {
+        System.out.println("You clicked me!");
+        label.setText("Hello World!");
+    }
+    
+    @FXML
     private void clickButtonAction(ActionEvent event) {
        Record pos = tableView.getSelectionModel().getSelectedItem();
        System.out.println(pos.fieldTitle+" "+pos.fieldAuthor);
     };
     
+   @FXML
+    private void clickButtonDeleteBook(ActionEvent event) {
+        Record pos = tableView.getSelectionModel().getSelectedItem();
+        tableView.getItems().remove(pos);
+    };
    
     
     @FXML
@@ -144,6 +174,9 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private TextArea titleHandle;
+    
+    @FXML
+    private TextArea subTitleHandle;
     
     @FXML
     private TextArea authorHandle;
@@ -193,6 +226,10 @@ public class FXMLDocumentController implements Initializable {
      
     @FXML
     private TextField detailsTabLanguageH;
+    
+    //FXML details for the pop up windows tab
+    @FXML 
+    private Label popUpDetailsWindow; 
       
     
     @Override
@@ -205,10 +242,37 @@ public class FXMLDocumentController implements Initializable {
        
        // System.out.println("row"+row);
        // Group root = new Group();
+       
+    tableView.setOnMouseClicked(new EventHandler<MouseEvent>()
+    {
+        @Override
+        public void handle(MouseEvent mouseEvent)
+        {  
+            try {
+                if(mouseEvent.getClickCount() == 2)
+                {
+                    System.out.println("two");
+                    System.out.println("You clicked that!");
+                    Parent root = FXMLLoader.load(getClass().getResource("FXMLPopUpWindow.fxml"));
+                    Scene scene = new Scene(root);
+                    Stage stage = new Stage();
+                    //popUpDetailsWindow.setText("hello");
+                    stage.setFullScreen(false);
+                    stage.setScene(scene);
+                    stage.show();
+                };
+                
+                
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }; 
+        
+    });
       
-      tableView.getSelectionModel().selectedItemProperty().addListener(new SelectionListener()
-       {
-      @Override
+    tableView.getSelectionModel().selectedItemProperty().addListener(new SelectionListener()
+    {
+        @Override
         public void changed(ObservableValue<? extends Record> observable,
                 Record oldDoc, Record newDoc) {
             System.out.println("Changing selected row ");
@@ -217,12 +281,14 @@ public class FXMLDocumentController implements Initializable {
             Record pos2 = tableView.getSelectionModel().getSelectedItem();
        System.out.println(pos2);
        
-            //titleHandle.setText();
+            //titleH andle.setText();
             if (oldDoc != null) {
                 
                 // update information with the sessions tab
                 titleHandle.setText(pos2.getFieldTitle());
                 authorHandle.setText(pos2.getFieldAuthor());
+                    subTitleHandle.setText(pos2.getFieldSubTitle());
+                //summaryHandle.setText(pos2.getSummaryValue());
                 
                 // update information with the details tab
                 detailsTabTitleHandle.setText(pos2.getFieldTitle());
@@ -246,6 +312,7 @@ public class FXMLDocumentController implements Initializable {
        } 
       );
       
+
       
       
       TableColumn columnMonth = new TableColumn("Title");
@@ -253,10 +320,17 @@ public class FXMLDocumentController implements Initializable {
                 new PropertyValueFactory<Record,String>("fieldTitle"));
         columnMonth.setMinWidth(60);
         
+
         TableColumn columnValue1 = new TableColumn("Author");
         columnValue1.setCellValueFactory(
                 new PropertyValueFactory<Record,Integer>("fieldAuthor"));
         columnValue1.setMinWidth(60);
+        
+               TableColumn columnSubTitle = new TableColumn("SubTitle");
+        columnSubTitle.setCellValueFactory(
+                new PropertyValueFactory<Record,String>("fieldSubTitle"));
+        columnSubTitle.setMinWidth(60);
+        
         
         TableColumn columnValue2 = new TableColumn("Pages");
         columnValue2.setCellValueFactory(
@@ -281,7 +355,7 @@ public class FXMLDocumentController implements Initializable {
      
       tableView.setItems(dataList);
 
-      tableView.getColumns().setAll(columnMonth, columnValue1, columnValue2, columnValue3, columnValue4, columnValue5);
+      tableView.getColumns().setAll(columnMonth, columnValue1, columnValue2, columnSubTitle, columnValue3, columnValue4, columnValue5);
 
     }    
     

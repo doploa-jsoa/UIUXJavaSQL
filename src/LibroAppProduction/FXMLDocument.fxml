@@ -60,7 +60,7 @@
                               <Insets bottom="5.0" top="5.0" />
                            </padding>
                         </Label>
-                        <Label layoutX="16.0" layoutY="380.0" text="Summary">
+                        <Label layoutX="16.0" layoutY="380.0" text="Sub-title">
                            <font>
                               <Font name="Bodoni MT Bold" size="12.0" />
                            </font>
@@ -88,7 +88,20 @@
                               <Font size="12.0" />
                            </font>
                         </TextArea>
-                        <TextArea layoutX="128.0" layoutY="380.0" prefHeight="105.0" prefWidth="288.0">
+                        <TextArea fx:id="summaryHandle" layoutX="128.0" layoutY="403.0" prefHeight="105.0" prefWidth="288.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextArea>
+                        <Label layoutX="16.0" layoutY="403.0" text="Summary">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" top="5.0" />
+                           </padding>
+                        </Label>
+                        <TextArea fx:id="subTitleHandle" layoutX="128.0" layoutY="380.0" prefHeight="23.0" prefWidth="288.0">
                            <font>
                               <Font size="12.0" />
                            </font>
@@ -266,5 +279,6 @@
       </TabPane>
       <Button layoutX="14.0" layoutY="16.0" mnemonicParsing="false" text="New Session" />
       <Button layoutX="146.0" layoutY="16.0" mnemonicParsing="false" text="Synchronize" />
+      <Button layoutX="133.0" layoutY="559.0" mnemonicParsing="false" onAction="#clickButtonDeleteBook" text="Delete Book" />
    </children>
 </AnchorPane>
