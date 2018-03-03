@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -25,17 +26,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 /**
  *
@@ -166,7 +169,7 @@ public class FXMLDocumentController implements Initializable {
    
     
     @FXML
-    private TableView<Record> tableView = new TableView<>();
+    public TableView<Record> tableView = new TableView<>();
     
     //
     // FXML fields for the Sessions Tab
@@ -243,6 +246,29 @@ public class FXMLDocumentController implements Initializable {
        // System.out.println("row"+row);
        // Group root = new Group();
        
+    tableView.setRowFactory(new Callback<TableView<Record>, TableRow<Record>>() {  
+            @Override  
+            public TableRow<Record> call(TableView<Record> tableView) {  
+                final TableRow<Record> row = new TableRow<>();  
+                final ContextMenu contextMenu = new ContextMenu();  
+                final MenuItem removeMenuItem = new MenuItem("Remove Book");  
+                removeMenuItem.setOnAction(new EventHandler<ActionEvent>() {  
+                    @Override  
+                    public void handle(ActionEvent event) {  
+                        tableView.getItems().remove(row.getItem());  
+                    }  
+                });  
+                contextMenu.getItems().add(removeMenuItem);  
+               // Set context menu on row, but use a binding to make it only show for non-empty rows:  
+                row.contextMenuProperty().bind(  
+                        Bindings.when(row.emptyProperty())  
+                        .then((ContextMenu)null)  
+                        .otherwise(contextMenu)  
+                );  
+                return row ;  
+            }  
+        });  
+       
     tableView.setOnMouseClicked(new EventHandler<MouseEvent>()
     {
         @Override
@@ -253,10 +279,9 @@ public class FXMLDocumentController implements Initializable {
                 {
                     System.out.println("two");
                     System.out.println("You clicked that!");
-                    Parent root = FXMLLoader.load(getClass().getResource("FXMLPopUpWindow.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("FXMLHello.fxml"));
                     Scene scene = new Scene(root);
                     Stage stage = new Stage();
-                    //popUpDetailsWindow.setText("hello");
                     stage.setFullScreen(false);
                     stage.setScene(scene);
                     stage.show();

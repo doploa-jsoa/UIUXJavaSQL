@@ -279,6 +279,6 @@
       </TabPane>
       <Button layoutX="14.0" layoutY="16.0" mnemonicParsing="false" text="New Session" />
       <Button layoutX="146.0" layoutY="16.0" mnemonicParsing="false" text="Synchronize" />
-      <Button layoutX="133.0" layoutY="559.0" mnemonicParsing="false" onAction="#clickButtonDeleteBook" text="Delete Book" />
+      <Button layoutX="133.0" layoutY="559.0" mnemonicParsing="false" onAction="#clickButtonDeleteBook" text="Remove Items" />
    </children>
 </AnchorPane>
