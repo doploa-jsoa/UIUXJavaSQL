@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="802.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LibroAppProduction.FXMLDocumentController">
+   <children>
+      <ImageView fitHeight="194.0" fitWidth="148.0" layoutX="561.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true" />
+      <TableView fx:id="tableView" layoutX="18.0" layoutY="118.0" prefHeight="433.0" prefWidth="807.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn prefWidth="75.0" text="C3" />
+            <TableColumn prefWidth="75.0" text="C4" />
+            <TableColumn prefWidth="75.0" text="C5" />
+            <TableColumn prefWidth="75.0" text="C6" />
+        </columns>
+      </TableView>
+      <TextArea layoutX="19.0" layoutY="72.0" prefHeight="35.0" prefWidth="807.0" promptText="ISBN" />
+      <Label layoutX="368.0" layoutY="18.0" text="THE HILLTOP SCHOOL, AHODWO-DABAN">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <MenuButton layoutX="1120.0" layoutY="14.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="75.0" text="Settings">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+      </MenuButton>
+      <Button layoutX="19.0" layoutY="559.0" mnemonicParsing="false" text="Add  Book" />
+      <Button fx:id="btnEndSession" layoutX="706.0" layoutY="561.0" mnemonicParsing="false" onAction="#clickNewSessionAction" text="End Session" />
+      <TabPane layoutX="833.0" layoutY="65.0" prefHeight="535.0" prefWidth="427.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Session">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="completeButton" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#completeButtonAction" prefHeight="111.0" prefWidth="119.0" text="COMPLETE" />
+                        <Label layoutX="16.0" layoutY="334.0" text="Title">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" top="5.0" />
+                           </padding>
+                        </Label>
+                        <Label layoutX="16.0" layoutY="357.0" text="Author">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" top="5.0" />
+                           </padding>
+                        </Label>
+                        <Label layoutX="16.0" layoutY="380.0" text="Sub-title">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" top="5.0" />
+                           </padding>
+                        </Label>
+                        <TextField layoutX="152.0" layoutY="14.0" prefHeight="25.0" prefWidth="260.0" promptText="First Name">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextField>
+                        <TextField layoutX="152.0" layoutY="37.0" prefHeight="25.0" prefWidth="260.0" promptText="Surname">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextField>
+                        <TextArea fx:id="titleHandle" layoutX="128.0" layoutY="334.0" prefHeight="23.0" prefWidth="288.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextArea>
+                        <TextArea fx:id="authorHandle" layoutX="128.0" layoutY="357.0" prefHeight="23.0" prefWidth="288.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextArea>
+                        <TextArea fx:id="summaryHandle" layoutX="128.0" layoutY="403.0" prefHeight="105.0" prefWidth="288.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextArea>
+                        <Label layoutX="16.0" layoutY="403.0" text="Summary">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" top="5.0" />
+                           </padding>
+                        </Label>
+                        <TextArea fx:id="subTitleHandle" layoutX="128.0" layoutY="380.0" prefHeight="23.0" prefWidth="288.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextArea>
+                        <TextField layoutX="152.0" layoutY="62.0" prefHeight="25.0" prefWidth="260.0" promptText="Identification Number">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Details">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="602.0" prefWidth="427.0">
+                     <children>
+                        <TextField fx:id="detailsTabTitleHandle" layoutX="131.0" layoutY="14.0" prefHeight="22.0" prefWidth="287.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font></TextField>
+                        <Label layoutX="16.0" layoutY="14.0" text="Title">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" top="5.0" />
+                           </padding></Label>
+                        <Label layoutX="16.0" layoutY="37.0" text="Author/Editor">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" top="5.0" />
+                           </padding></Label>
+                        <Label layoutX="16.0" layoutY="60.0" text="Publisher">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" top="5.0" />
+                           </padding></Label>
+                        <Label layoutX="16.0" layoutY="83.0" text="Year">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" top="5.0" />
+                           </padding></Label>
+                        <Label layoutX="14.0" layoutY="123.0" text="Address">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" top="5.0" />
+                           </padding></Label>
+                        <Label layoutX="17.0" layoutY="146.0" text="Series">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" top="5.0" />
+                           </padding></Label>
+                        <Label layoutX="16.0" layoutY="169.0" text="Volume">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" top="5.0" />
+                           </padding></Label>
+                        <Label layoutX="16.0" layoutY="192.0" text="Edition">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" top="5.0" />
+                           </padding></Label>
+                        <Label layoutX="16.0" layoutY="232.0" text="Pages">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" top="5.0" />
+                           </padding></Label>
+                        <Label layoutX="16.0" layoutY="256.0" text="ISBN">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" top="5.0" />
+                           </padding></Label>
+                        <Label layoutX="16.0" layoutY="279.0" text="URL">
+                           <font>
+                              <Font name="Bodoni MT" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" top="5.0" />
+                           </padding></Label>
+                        <Label layoutX="16.0" layoutY="302.0" text="Summary">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" top="5.0" />
+                           </padding></Label>
+                        <TextField fx:id="detailsTabAuthorHandle" layoutX="131.0" layoutY="37.0" prefHeight="22.0" prefWidth="287.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="detailsTabPublisherH" layoutX="131.0" layoutY="60.0" prefHeight="22.0" prefWidth="287.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="detailsTabYearH" layoutX="131.0" layoutY="83.0" prefHeight="22.0" prefWidth="287.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="detailsTabEditionH" layoutX="131.0" layoutY="192.0" prefHeight="22.0" prefWidth="287.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="detailsTabVolumeH" layoutX="131.0" layoutY="169.0" prefHeight="22.0" prefWidth="287.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="detailsTabSeriesH" layoutX="131.0" layoutY="146.0" prefHeight="22.0" prefWidth="287.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="detailsTabAddressH" layoutX="131.0" layoutY="123.0" prefHeight="22.0" prefWidth="287.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="detailsTabPagesH" layoutX="131.0" layoutY="232.0" prefHeight="22.0" prefWidth="287.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="detailsTabISBNH" layoutX="131.0" layoutY="255.0" prefHeight="22.0" prefWidth="287.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="detailsURLH" layoutX="131.0" layoutY="278.0" prefHeight="22.0" prefWidth="287.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="detailsTabSummaryH" layoutX="131.0" layoutY="301.0" prefHeight="108.0" prefWidth="287.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Description">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextArea layoutX="14.0" layoutY="14.0" prefHeight="463.0" prefWidth="401.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Contents">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Button layoutX="14.0" layoutY="16.0" mnemonicParsing="false" text="New Session" />
+      <Button layoutX="146.0" layoutY="16.0" mnemonicParsing="false" text="Synchronize" />
+      <Button layoutX="133.0" layoutY="559.0" mnemonicParsing="false" onAction="#clickButtonDeleteBook" text="Remove Items" />
+      <Button mnemonicParsing="false" text="Button" />
+   </children>
+</AnchorPane>
